@@ -9,17 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #080810;
-    --bg2: #0e0e1a;
-    --bg3: #13131f;
-    --accent: #5effa0;
-    --accent2: #7c6dfa;
-    --accent3: #ff6b6b;
-    --text: #e8e8f0;
-    --muted: #7a7a9a;
-    --border: rgba(255,255,255,0.06);
-    --card: rgba(255,255,255,0.03);
-    --glow: rgba(94, 255, 160, 0.15);
+    --bg: #0f0a07;
+    --bg2: #1a1410;
+    --bg3: #25201b;
+    --accent: #A0654E;
+    --accent-light: #C78268;
+    --accent2: #8B5A3C;
+    --accent3: #D4845C;
+    --text: #f0ead5;
+    --muted: #a89583;
+    --border: rgba(160, 101, 78, 0.15);
+    --card: rgba(160, 101, 78, 0.05);
+    --glow: rgba(160, 101, 78, 0.12);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +41,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23000' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
     opacity: 0.4;
@@ -51,8 +52,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(94,255,160,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(94,255,160,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(160, 101, 78, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(160, 101, 78, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
     z-index: 0;
@@ -67,7 +68,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 4rem;
-    background: rgba(8,8,16,0.85);
+    background: rgba(15, 10, 7, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
@@ -75,7 +76,7 @@
   .nav-logo {
     font-family: 'DM Mono', monospace;
     font-size: 0.9rem;
-    color: var(--accent);
+    color: var(--accent-light);
     letter-spacing: 0.1em;
     text-decoration: none;
   }
@@ -97,7 +98,7 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover { color: var(--accent-light); }
 
   /* --- HERO --- */
   #hero {
@@ -113,7 +114,7 @@
     position: absolute;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(94,255,160,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(160, 101, 78, 0.12) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%, -60%);
     pointer-events: none;
@@ -123,7 +124,7 @@
     position: absolute;
     width: 400px; height: 400px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,109,250,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 90, 60, 0.08) 0%, transparent 70%);
     bottom: 10%; right: 10%;
     pointer-events: none;
   }
@@ -132,12 +133,55 @@
     position: relative;
     z-index: 1;
     max-width: 900px;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 200px;
+  }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    border: 2px solid var(--accent-light);
+    background: linear-gradient(135deg, rgba(160, 101, 78, 0.15), rgba(139, 90, 60, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    box-shadow: 0 0 30px rgba(160, 101, 78, 0.2);
+    transition: all 0.3s;
+  }
+
+  .profile-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(160, 101, 78, 0.35);
+  }
+
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .hero-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.78rem;
-    color: var(--accent);
+    color: var(--accent-light);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
@@ -149,7 +193,7 @@
   .hero-label::before {
     content: '';
     width: 30px; height: 1px;
-    background: var(--accent);
+    background: var(--accent-light);
   }
 
   h1 {
@@ -164,7 +208,7 @@
   h1 .name-1 { color: var(--text); display: block; }
   h1 .name-2 {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
     display: block;
   }
 
@@ -176,7 +220,7 @@
     line-height: 1.8;
   }
 
-  .hero-subtitle strong { color: var(--accent); font-weight: 500; }
+  .hero-subtitle strong { color: var(--accent-light); font-weight: 500; }
 
   .hero-cta {
     display: flex;
@@ -200,14 +244,14 @@
   }
 
   .btn-primary {
-    background: var(--accent);
-    color: #080810;
+    background: var(--accent-light);
+    color: #0f0a07;
     font-weight: 500;
   }
 
   .btn-primary:hover {
     background: #fff;
-    box-shadow: 0 0 30px rgba(94,255,160,0.4);
+    box-shadow: 0 0 30px rgba(160, 101, 78, 0.4);
     transform: translateY(-2px);
   }
 
@@ -218,8 +262,8 @@
   }
 
   .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent-light);
+    color: var(--accent-light);
     transform: translateY(-2px);
   }
 
@@ -258,7 +302,7 @@
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: var(--accent);
+    color: var(--accent-light);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 0.8rem;
@@ -270,7 +314,7 @@
   .section-label::before {
     content: '';
     width: 20px; height: 1px;
-    background: var(--accent);
+    background: var(--accent-light);
   }
 
   h2 {
@@ -309,7 +353,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--accent-light);
     transform: scaleX(0);
     transition: transform 0.3s;
     transform-origin: left;
@@ -317,8 +361,8 @@
 
   .skill-card:hover::before { transform: scaleX(1); }
   .skill-card:hover {
-    border-color: rgba(94,255,160,0.2);
-    background: rgba(94,255,160,0.04);
+    border-color: rgba(160, 101, 78, 0.3);
+    background: rgba(160, 101, 78, 0.08);
     transform: translateY(-4px);
   }
 
@@ -341,7 +385,7 @@
   }
 
   .tag {
-    background: rgba(255,255,255,0.05);
+    background: rgba(160, 101, 78, 0.08);
     border: 1px solid var(--border);
     color: var(--muted);
     font-family: 'DM Mono', monospace;
@@ -362,7 +406,7 @@
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
+    background: linear-gradient(to bottom, var(--accent-light), transparent);
   }
 
   .timeline-item {
@@ -386,8 +430,8 @@
     top: 0.4rem;
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px var(--accent);
+    background: var(--accent-light);
+    box-shadow: 0 0 12px var(--accent-light);
   }
 
   .timeline-header {
@@ -402,7 +446,7 @@
   .timeline-company {
     font-family: 'DM Mono', monospace;
     font-size: 0.78rem;
-    color: var(--accent);
+    color: var(--accent-light);
     letter-spacing: 0.08em;
   }
 
@@ -438,7 +482,7 @@
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--accent);
+    color: var(--accent-light);
     font-size: 0.75rem;
   }
 
@@ -466,8 +510,8 @@
   .project-card.visible { opacity: 1; transform: translateY(0); }
 
   .project-card:hover {
-    border-color: rgba(94,255,160,0.25);
-    background: rgba(94,255,160,0.03);
+    border-color: rgba(160, 101, 78, 0.3);
+    background: rgba(160, 101, 78, 0.08);
     transform: translateY(-6px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   }
@@ -475,7 +519,7 @@
   .project-num {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
-    color: var(--accent);
+    color: var(--accent-light);
     opacity: 0.6;
   }
 
@@ -500,7 +544,7 @@
   .project-link {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: var(--accent);
+    color: var(--accent-light);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -526,14 +570,14 @@
   }
 
   .edu-card:hover {
-    border-color: rgba(124,109,250,0.3);
+    border-color: rgba(160, 101, 78, 0.3);
     transform: translateY(-4px);
   }
 
   .edu-degree {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: var(--accent2);
+    color: var(--accent3);
     letter-spacing: 0.08em;
     margin-bottom: 0.5rem;
   }
@@ -578,10 +622,10 @@
   }
 
   .contact-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent-light);
+    color: var(--accent-light);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(94,255,160,0.1);
+    box-shadow: 0 8px 20px rgba(160, 101, 78, 0.15);
   }
 
   /* --- FOOTER --- */
@@ -601,7 +645,7 @@
     font-size: 0.75rem;
   }
 
-  footer p span { color: var(--accent); }
+  footer p span { color: var(--accent-light); }
 
   /* --- ANIMATIONS --- */
   @keyframes fadeUp {
@@ -613,6 +657,7 @@
   h1 { animation: fadeUp 0.8s ease 0.25s both; }
   .hero-subtitle { animation: fadeUp 0.8s ease 0.4s both; }
   .hero-cta { animation: fadeUp 0.8s ease 0.55s both; }
+  .profile-section { animation: fadeUp 0.8s ease 0.3s both; }
 
   /* --- DIVIDER --- */
   .divider {
@@ -636,12 +681,12 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(124,109,250,0.08);
-    border: 1px solid rgba(124,109,250,0.2);
+    background: rgba(160, 101, 78, 0.08);
+    border: 1px solid rgba(160, 101, 78, 0.2);
     border-radius: 4px;
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: var(--accent2);
+    color: var(--accent3);
   }
 
   /* Mobile */
@@ -649,6 +694,9 @@
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     #hero { padding: 7rem 1.5rem 3rem; }
+    .hero-content { flex-direction: column; }
+    .profile-section { flex: 0 0 150px; }
+    .profile-pic { width: 150px; height: 150px; font-size: 2.5rem; }
     section { padding: 4rem 1.5rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
     .divider { margin: 0 1.5rem; }
@@ -677,28 +725,37 @@
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-content">
-    <div class="hero-label">Available for opportunities · Jersey City, NJ</div>
-    <h1>
-      <span class="name-1">Yogesh</span>
-      <span class="name-1">Punmiya</span>
-    </h1>
-    <p class="hero-subtitle">
-      <strong>Data Scientist</strong> · BI & Analytics Expert · AI & Cloud Engineer.<br/>
-      Building intelligent pipelines, agentic AI workflows, and data-driven insights that move organizations forward.
-    </p>
-    <div class="hero-cta">
-      <a href="mailto:yogeshpunmiya14@gmail.com" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Get in Touch
-      </a>
-      <a href="https://github.com/yogeshpunmiya14" target="_blank" class="btn btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/yogesh-punmiya/" target="_blank" class="btn btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
+    <div class="hero-text">
+      <div class="hero-label">Available for opportunities · Jersey City, NJ</div>
+      <h1>
+        <span class="name-1">Yogesh</span>
+        <span class="name-1">Punmiya</span>
+      </h1>
+      <p class="hero-subtitle">
+        <strong>Data Scientist</strong> · BI & Analytics Expert · AI & Cloud Engineer.<br/>
+        Building intelligent pipelines, agentic AI workflows, and data-driven insights that move organizations forward.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:yogeshpunmiya14@gmail.com" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 6"/></svg>
+          Get in Touch
+        </a>
+        <a href="https://github.com/yogeshpunmiya14" target="_blank" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/yogesh-punmiya/" target="_blank" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-pic">
+        <!-- Replace with your photo URL or emoji -->
+        👨‍💼
+      </div>
+      <p style="color: var(--muted); font-size: 0.85rem; text-align: center;">Add Your Photo Here</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -863,7 +920,7 @@
     <div class="project-card">
       <div class="project-num">01 / 04</div>
       <h3>Graph Database Analytics — Neo4j</h3>
-      <p>Designed and implemented a Neo4j graph database modelling real-world entities as nodes and relationships using Cypher. Built graph traversal queries to uncover connected patterns not achievable with relational databases.</p>
+      <p>Designed and implemented a Neo4j graph database modelling real-world entities as nodes and relationships using Cypher. Built graph traversal queries to uncover connected patterns not achievable with traditional relational models.</p>
       <div class="project-tools">
         <span class="tag">Neo4j</span>
         <span class="tag">Cypher</span>
@@ -875,7 +932,7 @@
     <div class="project-card">
       <div class="project-num">02 / 04</div>
       <h3>NYC Property Price Prediction — ML Pipeline</h3>
-      <p>End-to-end ML pipeline covering data ingestion, EDA, feature engineering, and regression modelling. Random Forest achieved best RMSE and R². Identified Gross Sq Ft and Borough as key price drivers.</p>
+      <p>End-to-end ML pipeline covering data ingestion, EDA, feature engineering, and regression modelling. Random Forest achieved best RMSE and R². Identified Gross Sq Ft and Borough as key predictors of property prices.</p>
       <div class="project-tools">
         <span class="tag">Python</span>
         <span class="tag">Pandas</span>
@@ -888,7 +945,7 @@
     <div class="project-card">
       <div class="project-num">03 / 04</div>
       <h3>LangChain & LangGraph — AI Workflow Orchestration</h3>
-      <p>Built agentic AI workflows using LangChain and LangGraph, including tool-calling patterns, multi-step LLM reasoning chains, and RAG pipeline design with document ingestion and semantic retrieval.</p>
+      <p>Built agentic AI workflows using LangChain and LangGraph, including tool-calling patterns, multi-step LLM reasoning chains, and RAG pipeline design with document ingestion and semantic search capabilities.</p>
       <div class="project-tools">
         <span class="tag">Python</span>
         <span class="tag">LangChain</span>
@@ -926,7 +983,7 @@
     <div class="edu-card">
       <div class="edu-degree">M.S. · Data Science · May 2026</div>
       <h3>Pace University</h3>
-      <p>Seidenberg School of Computer Science and Information Systems — New York City, NY</p>
+      <p>Seidenberg School of Computer Science and Information Systems ��� New York City, NY</p>
       <p style="margin-top:0.6rem; font-size:0.82rem; color: var(--muted);">Machine Learning · Python for Data Science · DBMS · Scalable Databases · Mathematics</p>
     </div>
 
@@ -948,15 +1005,15 @@
   <p class="sub">Open to Data Science, AI Engineering, and BI roles. Let's build something impactful together.</p>
   <div class="contact-links">
     <a href="mailto:yogeshpunmiya14@gmail.com" class="contact-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 6"/></svg>
       yogeshpunmiya14@gmail.com
     </a>
     <a href="https://www.linkedin.com/in/yogesh-punmiya/" target="_blank" class="contact-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
       LinkedIn
     </a>
     <a href="https://github.com/yogeshpunmiya14" target="_blank" class="contact-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
       GitHub
     </a>
     <a href="https://twitter.com/YPunmiya" target="_blank" class="contact-link">
@@ -964,7 +1021,7 @@
       @YPunmiya
     </a>
     <a href="tel:+12017362207" class="contact-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.66A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.8 19.8 0 012.45-8.63A2 2 0 019.08 2h3a2 2 0 012 1.72 12.84 12.84 0 001.687 5.627A2 2 0 0115.5 10.5h-2a4 4 0 00-4 4v4a4 4 0 004 4h4a4 4 0 004-4v-2a2 2 0 012-2h1.72a2 2 0 011.94 1.45A19.79 19.79 0 0123 16.92z"/></svg>
       +1 (201) 736-2207
     </a>
   </div>
@@ -1000,13 +1057,17 @@
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 200) {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 200) {
         current = section.getAttribute('id');
       }
     });
+
     navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === '#' + current
-        ? 'var(--accent)' : '';
+      link.classList.remove('active');
+      if (link.getAttribute('href').slice(1) === current) {
+        link.classList.add('active');
+      }
     });
   });
 </script>
